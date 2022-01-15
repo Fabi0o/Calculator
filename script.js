@@ -25,11 +25,64 @@ function operate(operator, a, b) {
   } else if (operator == "-") {
     result = substract(a, b);
     return result;
-  } else if (operator == "*") {
+  } else if (operator == "x") {
     result = multiply(a, b);
     return result;
-  } else if (operator == "/") {
+  } else if (operator == "÷") {
     result = division(a, b);
     return result;
   }
 }
+const operators = document.querySelectorAll(".operator");
+const clear = document.querySelector(".clearBtn");
+const numButtons = document.querySelectorAll(".numBtn");
+const dot = document.querySelector(".dot");
+const currentOperand = document.querySelector(".currentOperand");
+const previousOperand = document.querySelector(".previousOperand");
+const equalBtn = document.querySelector("#equal");
+
+function appendCurrentNumber(num) {
+  currentOperand.textContent += num;
+}
+
+numButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let num = button.textContent;
+    appendCurrentNumber(num);
+  });
+});
+
+clear.addEventListener("click", () => {
+  currentOperand.textContent = "";
+  previousOperand.textContent = "";
+});
+
+operators.forEach((button) => {
+  button.addEventListener("click", () => {
+    let num = button.textContent;
+    if (currentOperand.textContent != "" && previousOperand.textContent != "") {
+      gettingNumbersAndOperator();
+      previousOperand.textContent += num;
+    } else if (currentOperand.textContent != "") {
+      appendCurrentNumber(num);
+      previousOperand.textContent = currentOperand.textContent;
+      currentOperand.textContent = "";
+    }
+  });
+});
+function gettingNumbersAndOperator() {
+  let operator = previousOperand.textContent.charAt(
+    previousOperand.textContent.length - 1
+  );
+  let num1 = parseInt(
+    previousOperand.textContent.substring(
+      0,
+      previousOperand.textContent.length - 1
+    ),
+    10
+  );
+  let num2 = parseInt(currentOperand.textContent, 10);
+  previousOperand.textContent = operate(operator, num1, num2);
+  currentOperand.textContent = "";
+}
+equalBtn.addEventListener("click", gettingNumbersAndOperator);
