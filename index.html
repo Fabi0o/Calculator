@@ -3,29 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <title>Calculator</title>
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="calculatorBody">
-      <div class="display">Dummy text</div>
+      <div class="display">
+        <div class="previousOperand"></div>
+        <div class="currentOperand"></div>
+      </div>
       <div class="keyboard">
-        <button class="orangeBtn" id="ac">AC</button>
-        <button class="orangeBtn">÷</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button class="orangeBtn">x</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button class="orangeBtn">-</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button class="orangeBtn">+</button>
-        <button>0</button>
-        <button>.</button>
+        <button class="orangeBtn, clearBtn" id="ac">AC</button>
+        <button class="orangeBtn, operator">÷</button>
+        <button class="numBtn">7</button>
+        <button class="numBtn">8</button>
+        <button class="numBtn">9</button>
+        <button class="orangeBtn, operator">x</button>
+        <button class="numBtn">4</button>
+        <button class="numBtn">5</button>
+        <button class="numBtn">6</button>
+        <button class="orangeBtn, operator">-</button>
+        <button class="numBtn">1</button>
+        <button class="numBtn">2</button>
+        <button class="numBtn">3</button>
+        <button class="orangeBtn, operator">+</button>
+        <button class="numBtn">0</button>
+        <button class="dot">.</button>
         <button id="equal">=</button>
       </div>
     </div>
