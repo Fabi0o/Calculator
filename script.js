@@ -45,22 +45,25 @@ const currentOperand = document.querySelector(".currentOperand");
 const previousOperand = document.querySelector(".previousOperand");
 const equalBtn = document.querySelector("#equal");
 
-//displays numbers
+//displays numbers and limits input to 17 numbers to not overflow the display
 function appendCurrentNumber(num) {
   currentOperand.textContent += num;
 }
 numButtons.forEach((button) => {
   button.addEventListener("click", () => {
     let num = button.textContent;
-    appendCurrentNumber(num);
+    if (currentOperand.textContent.length < 17) {
+      appendCurrentNumber(num);
+    }
   });
 });
+
 //clears the display
 clear.addEventListener("click", () => {
   currentOperand.textContent = "";
   previousOperand.textContent = "";
 });
-//makes operator buttons working
+//makes operator buttons working, limits to use only one operator in one operation
 operators.forEach((button) => {
   button.addEventListener("click", () => {
     let num = button.textContent;
@@ -112,5 +115,15 @@ function gettingNumbersAndOperator() {
 equalBtn.addEventListener("click", () => {
   if (currentOperand.textContent != "" && previousOperand.textContent != "") {
     gettingNumbersAndOperator();
+  }
+});
+//makes decimel point button working, and limit input to one per sentence
+dot.addEventListener("click", () => {
+  if (
+    currentOperand.textContent != "" &&
+    !currentOperand.textContent.includes(".")
+  ) {
+    let num = dot.textContent;
+    appendCurrentNumber(num);
   }
 });
