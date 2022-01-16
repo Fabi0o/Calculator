@@ -64,6 +64,9 @@ clear.addEventListener("click", () => {
 operators.forEach((button) => {
   button.addEventListener("click", () => {
     let num = button.textContent;
+    let operator = previousOperand.textContent.charAt(
+      previousOperand.textContent.length - 1
+    );
     if (currentOperand.textContent != "" && previousOperand.textContent != "") {
       gettingNumbersAndOperator();
       previousOperand.textContent += num;
@@ -72,17 +75,12 @@ operators.forEach((button) => {
       previousOperand.textContent = currentOperand.textContent;
       currentOperand.textContent = "";
     } else if (
-      (currentOperand.textContent == "" &&
-        previousOperand.textContent.charAt(
-          previousOperand.textContent.length - 1
-        ) == "-") ||
-      "+" ||
-      "x" ||
-      "÷"
-    ) {
-    } else if (
       currentOperand.textContent == "" &&
-      previousOperand.textContent != ""
+      previousOperand.textContent != "" &&
+      operator != "-" &&
+      operator != "+" &&
+      operator != "x" &&
+      operator != "÷"
     ) {
       previousOperand.textContent += num;
     }
