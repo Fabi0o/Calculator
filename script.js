@@ -52,7 +52,15 @@ function appendCurrentNumber(num) {
 numButtons.forEach((button) => {
   button.addEventListener("click", () => {
     let num = button.textContent;
-    if (currentOperand.textContent.length < 17) {
+    const operators = ["+", "-", "x", "÷"];
+    if (
+      currentOperand.textContent == "" &&
+      previousOperand.textContent != "" &&
+      !operators.some((operator) =>
+        previousOperand.textContent.includes(operator)
+      )
+    ) {
+    } else if (currentOperand.textContent.length < 17) {
       appendCurrentNumber(num);
     }
   });
